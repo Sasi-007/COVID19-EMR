@@ -24,7 +24,7 @@
                     <a href="./predict.php" class="waves-effect">
                         <!-- <i class="ti-layout-grid3"></i> -->
                         <i class="fas fa-viruses"></i>
-                        <span>Disease Prediction</span>
+                        <span>COVID Prediction</span>
                     </a>
                 </li>
                 <li>
