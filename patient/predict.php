@@ -23,17 +23,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                     </div>
                 </div>
             </div>
-            <!-- <div class="row" style="margin-top:10px;">
-                <div class="col" style="text-align:center;">
-                    <div class="card">
-                        <div class="card-body">
-                            <iframe src="https://xraydetectioncovid19.herokuapp.com/" width="600" style="border:none;" height="400">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div id="heart_modal" class="modal custom-modal fade" role="dialog">
+            <!-- <div id="heart_modal" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -48,7 +38,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div id="covid_modal" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
@@ -65,7 +55,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                     </div>
                 </div>
             </div>
-            <div id="diabetes_modal" class="modal custom-modal fade" role="dialog">
+            <!-- <div id="diabetes_modal" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -96,9 +86,10 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
+            </div> -->
+            <!-- <div class="row">
+                <div class="col-lg-6"> -->
+                <div class="text-center">
                     <div class="card">
                         <div class="card-body text-center">
                             <h4 class="card-title">COVID-19 Prediction</h4>
@@ -109,7 +100,8 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <!-- </div> -->
+                <!-- <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body text-center">
                             <h4 class="card-title">Diabetes Prediction</h4>
@@ -145,7 +137,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                                 <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#pneumonia_modal"> Predict</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
