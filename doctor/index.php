@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
 </head>
 
@@ -26,13 +27,12 @@
         <div class="form-container sign-in-container">
             <form id="login_form">
                 <span id="invalid_details" class="text-danger"></span>
-                <h1>Sign In</h1>
+                <h1>Hello, Doctor!</h1>
                 <div class="social-container">
                 </div>
                 <input type="email" name="log_email" id="log_email" placeholder="Email" autocomplete="off">
                 <input type="password" name="log_password" id="log_password" placeholder="Password" autocomplete="off">
-                <a href="#">Forgot Your Password</a>
-
+                <!-- <a href="#">Forgot Your Password</a> -->
                 <button class="login" id="login">Sign In</button>
             </form>
         </div>
@@ -44,9 +44,9 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Doctor!</h1>
-                    <p>Enter your details and start journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <!-- <h1>Hello, Doctor!</h1>
+                    <p>Enter your details and start journey with us</p> -->
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_kltum0us.json"  background="transparent"  speed="1"  style="width: 400px; height: 400px;"  loop  autoplay></lottie-player>
                 </div>
             </div>
         </div>
@@ -58,12 +58,12 @@
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
 
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
+    // signUpButton.addEventListener('click', () => {
+    //     container.classList.add("right-panel-active");
+    // });
+    // signInButton.addEventListener('click', () => {
+    //     container.classList.remove("right-panel-active");
+    // });
     $(document).ready(function() {
         $("#login_form").validate({
             rules: {
