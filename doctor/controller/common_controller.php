@@ -2,7 +2,6 @@
 include_once('dbconn.php');
 $type = $_REQUEST['Type'];
 session_start();
-
 if($type == 'register'){
     $password=md5($_REQUEST["password"]);
         $add_category = gosql("INSERT INTO login (username,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
@@ -98,10 +97,10 @@ else if($type=='show_current_list'){
             $get_appointment="SELECT count(*) AS get_count FROM appointment WHERE book_time='$date' AND status='1';";
             $result_appointment=return_single($get_appointment);
             if($result_appointment["get_count"]=='0'){
-                echo Available;
+                echo("Available");
                 $is_available=1;
             }else{
-                echo UnAvailable;
+                echo("UnAvailable");
                 $is_available=0;
             }
             ?></td>
