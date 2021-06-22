@@ -38,7 +38,27 @@ include_once("includes/footer.php");
         <!-- End Page-content -->
     </div>
 </div>
+<div id="uploadModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="change_title">Upload File</span></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="uploadForm">
+                    <input type="file" name="inpFile" id="inpFile"><br>
+                    <input class="button btn btn-primary" type="submit" value="Upload">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
+var pat_id=0;
 $(document).ready(function() {
     show_patient_history();
 
@@ -54,5 +74,24 @@ $(document).ready(function() {
             }
         });
     }
+
+    $(document).on('click','.upload',function(){
+        pat_id=$(this).data("id");
+        $('#uploadModal').modal('show');
+    });
 });
+
+const uploadForm=document.getElementById('uploadForm');
+const inpFile=document.getElementById('inpFile');
+uploadForm.addEventListener("submit",uploadFile);
+function uploadFile(e){
+    e.preventDefault();
+    if(pat_id>0){
+        const xhr=new XMLHttpRequest();
+        xhr.open("POST","controller/upload.php");
+        var data = new FormData(uploadForm);
+        data.append("id", pat_id);
+        xhr.send(data);
+    }
+}
 </script>

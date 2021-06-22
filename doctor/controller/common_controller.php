@@ -1,5 +1,8 @@
 <?php
 include_once('dbconn.php');
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 $type = $_REQUEST['Type'];
 session_start();
 if($type == 'register'){
@@ -23,16 +26,17 @@ else if($type=='show_patient_history'){
     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     <thead>
         <tr>
-            <th>Patient ID</th>
-            <th>Patient Name</th>
-            <th>Time</th>
+            <th class='text-center'>Patient ID</th>
+            <th class='text-center'>Patient Name</th>
+            <th class='text-center'>Time</th>
+            <th class='text-center'>Prescription</th>
         </tr>
     </thead>
     <tbody>
         <?php
                 $count=1;
                 $is_available=1;
-                $sel_query="SELECT appointment.id,patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() ORDER BY appointment.book_time DESC";
+                $sel_query="SELECT appointment.id,patient_det.pat_id,appointment.folder_name,appointment.file_name,patient_det.name AS name,appointment.upload_status,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {  
                     //extra
@@ -49,6 +53,14 @@ else if($type=='show_patient_history'){
             <td align="center"><?php
                 $del_date=date_create($row["date_time"]);
                 echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+            <td align="center">
+            <?php if($row["upload_status"]==0){?>
+            <button type="submit" name="save" class="upload btn btn-primary" data-id="<?php echo $row["id"];?>">Upload Documents</button>
+            <?php }else{$filepath='../doctor/controller/'.$row["folder_name"].'/'.$row["file_name"];?>
+            <a href=<?php echo $filepath?> class="btn btn-primary" target="_blank">View</a>
+            <button type="submit" name="save" class="upload btn btn-primary" data-id="<?php echo $row["id"];?>">Change Prescription</button>
+            <?php }?>
+            </td>
         </tr>
         <?php } ?>
     </tbody>

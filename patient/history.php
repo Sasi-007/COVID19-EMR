@@ -50,7 +50,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
 $(document).ready(function() {
     var pat_id=$("#hidid").val();
     show_patient_history();
-    setInterval(function(){ show_patient_history(); }, 3000);
+    // setInterval(function(){ show_patient_history(); }, 3000);
     function show_patient_history() {
         $.ajax({
             type: "POST",
@@ -60,15 +60,22 @@ $(document).ready(function() {
                 Type: "show_patient_history"
             },
             success: function(result) {
-              // if(result.isEmpty()==1){
-              //   $(".live-order-list").html("No appointments previously had");
-              // }else{
                 $(".live-order-list").html(result);
-              // }
-              // var typo=result.isEmpty();
-              // alert(typo);
             }
         });
     }
+    $(document).on('click','.upload',function(){
+        pat_id=$(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "download.php",
+            data: {
+                "pat_id": pat_id
+            },
+            success: function(result) {
+                console.log(result);
+            }
+        });
+    });
 });
 </script>

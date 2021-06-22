@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 03:16 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jun 22, 2021 at 11:11 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `emr`
+-- Database: `emr1`
 --
 
 -- --------------------------------------------------------
@@ -32,18 +31,23 @@ CREATE TABLE `appointment` (
   `id` int(11) NOT NULL,
   `pat_id` varchar(25) NOT NULL,
   `book_time` datetime NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0'
+  `status` int(11) NOT NULL DEFAULT 0,
+  `upload_status` int(11) NOT NULL DEFAULT 0,
+  `folder_name` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`id`, `pat_id`, `book_time`, `status`) VALUES
-(16, 'PT1000641840713', '2021-04-23 21:42:00', 2),
-(17, 'PT1000641840711', '2021-05-05 18:47:00', 0),
-(18, 'PT1000641840711', '2021-05-29 18:47:00', 1),
-(19, 'PT1000641840711', '2021-05-24 18:47:00', 0);
+INSERT INTO `appointment` (`id`, `pat_id`, `book_time`, `status`, `upload_status`, `folder_name`, `file_name`) VALUES
+(16, 'PT1000641840713', '2021-04-23 21:42:00', 2, 0, '', ''),
+(17, 'PT1000641840711', '2021-05-05 18:47:00', 2, 0, '', '.'),
+(18, 'PT1000641840711', '2021-05-29 18:47:00', 1, 0, '', ''),
+(19, 'PT1000641840711', '2021-05-24 18:47:00', 1, 0, '', ''),
+(20, 'PT1000641840711', '2021-07-17 02:41:00', 1, 0, '', ''),
+(21, 'PT1000641840711', '2021-07-09 20:50:00', 2, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -94,7 +98,8 @@ CREATE TABLE `patient_det` (
 
 INSERT INTO `patient_det` (`id`, `pat_id`, `name`, `email`, `password`, `age`, `gender`, `ph_number`, `height`, `weight`) VALUES
 (6, 'PT1000641840711', 'sasi', 'sasi@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 20, 1, '2349234234', 6.40, 56),
-(12, 'PT1000641840713', 'san', 'santy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0);
+(12, 'PT1000641840713', 'san', 'santy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0),
+(13, 'PT1000176053782', 'demo', 'demo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0);
 
 --
 -- Indexes for dumped tables
@@ -126,7 +131,7 @@ ALTER TABLE `patient_det`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -138,7 +143,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `patient_det`
 --
 ALTER TABLE `patient_det`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
