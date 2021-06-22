@@ -2,9 +2,9 @@
 
 COVID Prediction System with Electronic Medical Records
 
-## About Application
+# About Application
 
-# Team members
+## Team members
 
  SASIDHAR. V.J - B.E CSE, PANIMALAR ENGINEERING COLLEGE 
  
@@ -12,16 +12,16 @@ COVID Prediction System with Electronic Medical Records
  
  VIGNESH. E - B.E CSE, PANIMALAR ENGINEERING COLLEGE
 
-## Getting Started
+# Getting Started
 
-# Basic Requirements:
+## Basic Requirements:
 
 Tomcat or Apache server, SQL Server, any Browsers(Google chrome, Microsoft Edge, etc.,) 
 
-## Running the Application
+# Running the Application
 
 Step 1: 
 
-# Hosted at
+## Hosted at
 
 https://covid19-emr.herokuapp.com/
