@@ -24,4 +24,4 @@ Step 1:
 
 # Hosted at
 
-https://ecr-final-year-2021.herokuapp.com/
+https://covid19-emr.herokuapp.com/
