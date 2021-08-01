@@ -36,7 +36,8 @@ else if($type=='show_patient_history'){
         <?php
                 $count=1;
                 $is_available=1;
-                $sel_query="SELECT appointment.id,patient_det.pat_id,appointment.folder_name,appointment.file_name,patient_det.name AS name,appointment.upload_status,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() ORDER BY appointment.book_time DESC";
+                $sel_query="SELECT appointment.id,patient_det.pat_id,appointment.folder_name,appointment.file_name,patient_det.name AS name,appointment.upload_status,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.status=1 ORDER BY appointment.book_time DESC";
+                // $sel_query="SELECT appointment.id,patient_det.pat_id,appointment.folder_name,appointment.file_name,patient_det.name AS name,appointment.upload_status,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {  
                     //extra

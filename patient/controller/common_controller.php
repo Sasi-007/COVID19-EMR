@@ -40,7 +40,7 @@ else if($type=='show_patient_history'){
     </thead>
     <tbody>
         <?php
-                $sel_query="SELECT appointment.id,appointment.folder_name,appointment.file_name,patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() AND appointment.pat_id='".$pat_id."' ORDER BY appointment.book_time DESC";
+                $sel_query="SELECT appointment.id,appointment.folder_name,appointment.file_name,appointment.upload_status,patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < NOw() AND appointment.pat_id='".$pat_id."' ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {?>
         <tr class="count_row">
@@ -48,10 +48,15 @@ else if($type=='show_patient_history'){
             <td align="center"><?php echo ucfirst($row["name"]); ?></td>
             <td align="center"><?php
                 $del_date=date_create($row["date_time"]);
-                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
-                <?php $filepath='../doctor/controller/'.$row["folder_name"].'/'.$row["file_name"];?>
-                <td><a href=<?php echo $filepath?> class="btn btn-primary" target="_blank">View</a></td>
-                <!-- <button type="submit" name="save" class="upload btn btn-primary" data-id="">Download Documents</button> -->
+                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?>
+            </td>
+            <?php $filepath='../doctor/controller/'.$row["folder_name"].'/'.$row["file_name"];
+            if($row["upload_status"]=="1"){
+            ?>
+            <td><a href=<?php echo $filepath?> class="btn btn-primary" target="_blank">View</a></td>
+            <?php }else{ ?>
+            <td><button class="btn btn-primary" style="cursor: context-menu;" disabled>View</button></td>
+            <?php } ?>
         </tr>
         <?php } ?>
     </tbody>

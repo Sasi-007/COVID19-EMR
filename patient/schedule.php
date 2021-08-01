@@ -76,27 +76,29 @@ $(document).ready(function() {
 
     $(document).on("click", "#req", function() {
         var book_date = $("#book_date").val();
-        $.ajax({
-            type: "POST",
-            url: "controller/common_controller.php",
-            data: {
-                book_date: book_date,
-                id: id,
-                Type: "patient_req_entry"
-            },
-            success: function(result) {
-                show_current_list();
-                Toastify({
-                    text: "Appointment Booked",
-                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                    className: "info",
-                }).showToast();
-                $("#book_date").val("");
-                // setTimeout(function() {
-                //     location.reload(true);
-                // }, 1500);
-            }
-        });
+        if (book_date) {
+            $.ajax({
+                type: "POST",
+                url: "controller/common_controller.php",
+                data: {
+                    book_date: book_date,
+                    id: id,
+                    Type: "patient_req_entry"
+                },
+                success: function(result) {
+                    show_current_list();
+                    Toastify({
+                        text: "Appointment Booked",
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        className: "info",
+                    }).showToast();
+                    $("#book_date").val("");
+                    // setTimeout(function() {
+                    //     location.reload(true);
+                    // }, 1500);
+                }
+            });
+        }
     });
 
     function show_current_list() {
