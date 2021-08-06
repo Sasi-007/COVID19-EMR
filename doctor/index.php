@@ -192,7 +192,7 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Invalid Password!'
+                            text: 'Invalid Credentials!'
                         })
                         $("#login").val("SIGN IN");
                     }

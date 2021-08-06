@@ -26,6 +26,34 @@ $id = $_REQUEST["user_id"];
 $fetch_customer = return_single("SELECT * from `patient_det` where id = '".$id."'");
 echo json_encode($fetch_customer);
 }
+else if($type=='show_patient_list'){
+    $pat_id=$_REQUEST["id"];
+    ?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <thead>
+        <tr>
+            <th align="center">Patient ID</th>
+            <th align="center">Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+                $count=1;
+                $sel_query="SELECT pat_id,book_time FROM `appointment` WHERE pat_id='".$pat_id."' AND appointment.book_time>NOW() AND appointment.status=1 ORDER BY appointment.book_time ASC";
+                $result = return_array($sel_query);
+                foreach($result as $row) {  
+                    ?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
+            <td align="center"><?php $del_date=date_create($row["book_time"]); echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php
+}
 else if($type=='show_patient_history'){
     $pat_id=$_REQUEST["pat_id"];?>
     <table id="datatable" class="table table-bordered dt-responsive nowrap"

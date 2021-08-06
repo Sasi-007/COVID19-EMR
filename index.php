@@ -66,7 +66,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center zindex-1">
-                    <h1 class="mb-3">COVID Prediction System with Electronic Medical Records</h1>
+                    <h1 class="mb-3">Diseases Prediction Systems For Covid with Electronic Medical Records</h1>
                     <!-- <h3 class="mb-3">We made your medical<br>
                         Treatment easy</h3> -->
                     <p class="mb-4">We made your medical<br>
