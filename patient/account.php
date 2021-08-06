@@ -1,5 +1,8 @@
 <?php
 session_start(); 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 include_once('controller/dbconn.php'); 
 include_once('includes/header.php'); 
 include_once('includes/sidebar.php'); 
@@ -39,10 +42,10 @@ $email=$_SESSION["pat"]["email"];
                                 <table id="view_profile" class="table mb-0 table-bordered dt-responsive nowrap">
                                     <tbody>
                                         <?php
-                                            $count=1;
-                                            $sel_query="SELECT * FROM `patient_det` WHERE name = '".$username."'";
+                                            $sel_query="SELECT * FROM `patient_det` WHERE id = '".$id."'";
                                             $result = return_array($sel_query);
-                                            foreach($result as $row) { ?>
+                                            foreach($result as $row) { 
+                                            ?>
                                         <tr>
                                             <td><b>NAME</b></td>
                                             <td><?php echo $username; ?>
@@ -60,18 +63,14 @@ $email=$_SESSION["pat"]["email"];
                                         </tr>
                                         <tr>
                                             <td><b>GENDER</b></td>
-                                            <td><?php if($row["gender"]=='1'){
-                                              echo Male;
-                                            }else if($row["gender"]=='2'){
-                                              echo Female;
-                                            } else{
-                                              print("-");
-                                            } ?>
-                                            </td>
+                                            <td><?php if($row["gender"]=='0'){print("-");}else{
+                                                echo $b = $row["gender"]=='1' ? 'Male' : 'Female';
+                                            }?></td>
                                         </tr>
                                         <tr>
                                             <td><b>PHONE NUMBER</b></td>
-                                            <td>+91 <?php if($row["ph_number"]=='0'){print("-");}else{
+                                            <td><?php if($row["ph_number"]=='0'){print("-");}else{
+                                              ?>+91 <?php 
                                               echo $row["ph_number"];
                                             } ?>
                                             </td>
@@ -80,14 +79,16 @@ $email=$_SESSION["pat"]["email"];
                                             <td><b>HEIGHT</b></td>
                                             <td><?php if($row["height"]=='0'){print("-");}else{
                                               echo $row["height"];
-                                            } ?> feet
+                                              ?> feet<?php
+                                            } ?> 
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>WEIGHT</b></td>
                                             <td><?php if($row["weight"]=='0'){print("-");}else{
                                               echo $row["weight"];
-                                            } ?> Kg
+                                              ?> Kg<?php
+                                            } ?> 
                                             </td>
                                         </tr>
                                         <?php } ?>
