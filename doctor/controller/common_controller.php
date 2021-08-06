@@ -69,6 +69,35 @@ else if($type=='show_patient_history'){
 <script src="../assets/js/pages/datatables.init.js"></script>
 <?php
 }
+else if($type=='show_upcoming_list'){?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <thead>
+        <tr>
+            <th class='text-center'>Patient ID</th>
+            <th class='text-center'>Patient Name</th>
+            <th class='text-center'>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            $sel_query="SELECT patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.book_time>NOW() AND appointment.status=1 ORDER BY appointment.book_time ASC";
+            $result = return_array($sel_query);
+            foreach($result as $row) {  
+        ?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
+            <td align="center"><?php echo ucfirst($row["name"]); ?></td>
+            <td align="center"><?php
+                $del_date=date_create($row["date_time"]);
+                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php
+}
 else if($type=='show_current_list'){
     $status_common = array("0"=>"Reject","1"=>"Accept");
     // $status_color = array("0"=>"F7344C","1"=>"0EB03E");?>

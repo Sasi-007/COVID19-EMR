@@ -31,11 +31,11 @@ if($timeOfDay == 'am'){
                             <!-- <li class="breadcrumb-item active">Welcome to Foox Gro Dashboard</li> -->
                         </ol>
                     </div>
-                    <div id="reportrange"
+                    <!-- <div id="reportrange"
                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
                         <i class="fa fa-calendar"></i>&nbsp;
                         <span></span> <i class="fa fa-caret-down"></i>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
@@ -45,7 +45,7 @@ if($timeOfDay == 'am'){
                             <h5 class="card-title"><?php echo $greeting; ?> <span style="font-weight:bold;"> <?php echo $username; ?> </span></h5>
                             <p class="card-text">You have <span class="font-weight-bold" id="total-sales"></span> more patients booking today.
                             </p>
-                            <a href="schedule.php" class="btn btn-primary">View Schedule</a>
+                            <a href="appointments.php" class="btn btn-primary">View Schedule</a>
                         </div>
                     </div>
                 </div>
@@ -73,65 +73,20 @@ if($timeOfDay == 'am'){
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 $(document).ready(function() {
-    // live share
-    $(function() {
-        var value = '<?php echo($sel_query3[Total1]);?>';
+    show_current_list();
+    setInterval(function() {
+        show_current_list();
+    }, 4500);
 
-        // Toastify({
-        //     text: value + " placed ",
-        //     duration: 3000,
-        //     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-        //     className: "success",
-        // }).showToast();
-        var start = moment().subtract(29, 'days');
-        var end = moment();
-
-        // live share
-
-
-        // live share
-        function cb(start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                'MMMM D, YYYY'));
-
-            var starting_date = start.format('YYYY-MM-DD');
-            var ending_date = end.format('YYYY-MM-DD');
-            total_sales(starting_date, ending_date);
-        }
-
-        $('#reportrange').daterangepicker({
-            startDate: start,
-            endDate: end,
-
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment()
-                    .subtract(1, 'month').endOf('month')
-                ]
-            }
-
-        }, cb);
-
-        cb(start, end);
-    });
-    // live share
-
-    function total_sales(starting_date, ending_date) {
+    function show_current_list() {
         $.ajax({
             type: "POST",
             url: "controller/common_controller.php",
             data: {
-                starting_date: starting_date,
-                ending_date: ending_date,
-                Type: "total_sales"
+                Type: "show_upcoming_list"
             },
             success: function(result) {
-                // console.log(result);
-                $("#total-sales").html(result);
+                $(".live-order-list").html(result);
             }
         });
     }
