@@ -54,7 +54,7 @@ if($timeOfDay == 'am'){
                                 $sel_query="SELECT COUNT(*) AS count FROM `appointment` WHERE pat_id='".$pat_id."' AND appointment.book_time>NOW() AND appointment.status=1 ORDER BY appointment.book_time ASC";
                                 $result = return_single($sel_query);
                             ?>
-                            <p class="card-text">You have <?php echo $result["count"]; ?> no appointments today.</p>
+                            <p class="card-text">You have <?php echo $b=$result["count"]>0?$result["count"]:'0'; ?> appointments today.</p>
                             <a href="schedule.php" class="btn btn-primary">View Schedule</a>
                         </div>
                     </div>
