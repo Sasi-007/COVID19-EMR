@@ -12,6 +12,8 @@ COVID Prediction System with Electronic Medical Records
  
  VIGNESH. E - B.E CSE, PANIMALAR ENGINEERING COLLEGE
 
+ Shanmugasundar. R - B.E CSE, PANIMALAR ENGINEERING COLLEGE
+
 # Getting Started
 
 ## Basic Requirements:

@@ -17,7 +17,7 @@ ini_set("display_errors", "Off");
 function db_connect() {
     $dbhost = 'localhost';
     $dbusername = 'root';
-    $database = 'emr1';
+    $database = 'emr';
     $dbuserpassword = '';
 //    $dbhost = 'bm5yzmft28ph1gw4zio2-mysql.services.clever-cloud.com';
 //    $dbusername = 'ub0kopxjm61lm4z1';
